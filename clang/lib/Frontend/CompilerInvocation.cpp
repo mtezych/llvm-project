@@ -2711,6 +2711,7 @@ static void ParseLangArgs(LangOptions &Opts, ArgList &Args, InputKind IK,
   Opts.Exceptions = Args.hasArg(OPT_fexceptions);
   Opts.ObjCExceptions = Args.hasArg(OPT_fobjc_exceptions);
   Opts.CXXExceptions = Args.hasArg(OPT_fcxx_exceptions);
+  Opts.CXXStaticExceptions = Args.hasArg(OPT_fcxx_static_exceptions);
 
   // -ffixed-point
   Opts.FixedPoint =
