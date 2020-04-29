@@ -38,6 +38,9 @@
 #ifndef MODULES_KEYWORD
 #define MODULES_KEYWORD(X) KEYWORD(X,KEYMODULES)
 #endif
+#ifndef STATIC_EXCEPTIONS_KEYWORD
+#define STATIC_EXCEPTIONS_KEYWORD(X) KEYWORD(X,KEYSTATICEXCEPTIONS)
+#endif
 #ifndef TYPE_TRAIT
 #define TYPE_TRAIT(N,I,K) KEYWORD(I,K)
 #endif
@@ -390,6 +393,9 @@ MODULES_KEYWORD(import)
 CXX2A_KEYWORD(char8_t               , CHAR8SUPPORT)
 CXX2A_KEYWORD(consteval             , 0)
 CXX2A_KEYWORD(constinit             , 0)
+
+// C++ static exceptions keywords
+STATIC_EXCEPTIONS_KEYWORD(throws)
 
 // C11 Extension
 KEYWORD(_Float16                    , KEYALL)
@@ -858,6 +864,7 @@ ANNOTATION(header_unit)
 #undef TYPE_TRAIT_2
 #undef TYPE_TRAIT_1
 #undef TYPE_TRAIT
+#undef STATIC_EXCEPTIONS_KEYWORD
 #undef CONCEPTS_KEYWORD
 #undef CXX2A_KEYWORD
 #undef CXX11_KEYWORD
