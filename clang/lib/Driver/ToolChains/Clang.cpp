@@ -376,6 +376,24 @@ static void addExceptionArgs(const ArgList &Args, types::ID InputType,
 
   if (EH)
     CmdArgs.push_back("-fexceptions");
+
+  if (types::isCXX(InputType) && Args.hasFlag(options::OPT_fcxx_static_exceptions,
+                                              options::OPT_fno_cxx_static_exceptions, false))
+  {
+    // The C++ statically typed exceptions are zero-overhead and deterministic,
+    // because instances of the std::error type are thrown and caught by value,
+    // thus there is no reason to disable them.
+    //
+    // They are also an alternative / are orthogonal to C++ (dynamic) exceptions,
+    // so it should be possible to enable C++ static exceptions,
+    // while C++ (dynamic) exceptions are disabled:
+    //
+    //  $ clang++ -std=c++17 -fno-cxx-exceptions -fcxx-static-exceptions -c foo.cxx -o foo.o
+    //
+    CmdArgs.push_back("-fcxx-static-exceptions");
+    //
+    // TODO: How options -fexceptions and -fcxx-static-exceptions should interact with each other?
+  }
 }
 
 static bool ShouldDisableAutolink(const ArgList &Args, const ToolChain &TC) {
