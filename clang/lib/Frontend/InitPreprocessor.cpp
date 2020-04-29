@@ -556,6 +556,9 @@ static void InitializeCPlusPlusFeatureTestMacros(const LangOptions &LangOpts,
     Builder.defineMacro("__cpp_experimental_concepts", "1L");
   if (LangOpts.Coroutines)
     Builder.defineMacro("__cpp_coroutines", "201703L");
+
+  if (LangOpts.CXXStaticExceptions)
+    Builder.defineMacro("__cpp_static_exceptions", "202003L");
 }
 
 static void InitializePredefinedMacros(const TargetInfo &TI,
